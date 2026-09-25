@@ -1,0 +1,46 @@
+
+---
+
+## 📄 `nyayasetu/docs/14-PHASED-ROADMAP.md`
+
+```markdown
+# 14 — Phased Roadmap
+
+## 12-Month Gantt
+
+```mermaid
+gantt
+    title NyayaSetu Delivery Roadmap
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section Discovery
+    Legal Mapping & Stakeholder Alignment :done, p1a, 2026-10-01, 30d
+    Architecture Blueprint                :active, p1b, 2026-10-15, 30d
+    Compliance & Security Strategy        :        p1c, 2026-11-01, 20d
+
+    section Data & AI Foundation
+    Golden Dataset Curation (500 cases)   :        p2a, 2026-11-15, 45d
+    Multilingual VLM Pipeline             :        p2b, 2026-12-01, 40d
+    RAG Infrastructure                    :        p2c, 2026-12-15, 35d
+
+    section Agentic Core
+    Classifier + Extractor Agents         :        p3a, 2027-01-15, 30d
+    Validator + Reasoner Agents           :        p3b, 2027-02-01, 35d
+    Defect Memo Agent                     :        p3c, 2027-03-01, 20d
+    MCP Integration (CCTNS)               :        p3d, 2027-02-15, 30d
+
+    section Frontend
+    MF Shell + Document Viewer            :        p4a, 2027-02-01, 35d
+    Gap Analysis Dashboard                :        p4b, 2027-03-01, 30d
+    Defect Memo UI + Admin Console        :        p4c, 2027-03-15, 30d
+
+    section Pilot
+    Security Hardening + Pen Test         :        p5a, 2027-04-15, 20d
+    Chennai District Shadow Pilot         :        p5b, 2027-05-01, 45d
+    CCTNS Integration                     :        p5c, 2027-05-15, 30d
+
+    section Rollout
+    Coimbatore + Madurai Rollout          :        p6a, 2027-06-15, 45d
+    State-wide Scale (1000+ PS)           :        p6b, 2027-08-01, 60d
+    Continuous Learning Pipeline          :        p6c, 2027-07-01, 90d

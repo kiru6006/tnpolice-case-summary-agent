@@ -1,0 +1,193 @@
+
+## Content Requirements Per File
+
+### README.md (Root)
+- Project name, tagline, one-paragraph summary
+- Key features (bullet list)
+- Tech stack table
+- Folder structure explanation
+- Quick start for developers
+- Links to all docs/
+
+### docs/01-PROJECT-VISION.md
+- Problem statement
+- Vision & mission
+- Success metrics (KPIs: % reduction in defect memo turnaround, % increase in charge sheet completeness, etc.)
+- Non-goals / out-of-scope
+
+### docs/02-USE-CASES.md
+Detail 4 primary use cases with: Actor, Pain Point, AI Solution, User Journey, Acceptance Criteria
+1. Investigating Officer — Pre-Submission QA
+2. Court Clerk — Automated Docketing & Triage
+3. Judge/Magistrate — Judicial Scrutiny & Gap Analysis
+4. Public Prosecutor — Case Strength & Risk Analyzer
+
+### docs/03-STAKEHOLDERS.md
+- RACI matrix
+- Stakeholder map (TN Police DGP, Judiciary, Prosecutors, Court Staff, Citizens)
+- Communication plan
+
+### docs/04-LEGAL-FRAMEWORK.md
+- BNSS sections mapping (173, 180, 183, 193, 105)
+- BSA (Bharatiya Sakshya Adhiniyam) evidence rules
+- BNS (Bharatiya Nyaya Sanhita) offense categories
+- Legacy CrPC/IPC/IEA handling for old cases
+- Tamil Nadu Police Manual references
+- DPDP Act 2023 implications
+
+### docs/05-SYSTEM-ARCHITECTURE.md
+- 5-tier architecture diagram (use Mermaid)
+  - Tier 1: Presentation (Micro-Frontend)
+  - Tier 2: API Gateway + Security + PII Masking
+  - Tier 3: Agentic AI Core (LangGraph)
+  - Tier 4: Data + Integration (Vector DB, S3, CCTNS)
+  - Tier 5: LLMOps + Observability
+- Data flow diagram (Mermaid)
+- Component interaction diagram
+
+### docs/06-AGENTIC-AI-WORKFLOW.md
+- LangGraph state machine (Mermaid diagram)
+- Agent responsibilities:
+  - Classifier Agent
+  - Extractor Agent (VLM-based)
+  - Validator Agent (rule-based + RAG)
+  - Reasoner Agent (contradiction detection)
+  - Defect Memo Agent
+- Message passing protocol between agents
+- Error handling & retry strategies
+- Human-in-the-loop checkpoints
+
+### docs/07-RAG-PIPELINE.md
+- Chunking strategy for legal documents
+- Embedding model selection (multilingual: Tamil + English)
+- Vector DB schema
+- Retrieval strategies (hybrid search, re-ranking)
+- Context window management
+- Citation enforcement (every claim must cite source + page #)
+
+### docs/08-MCP-INTEGRATION.md
+- MCP server design
+- Tools exposed:
+  - CCTNS criminal history lookup
+  - Legal precedent search (IndianKanoon)
+  - TN Police Manual lookup
+  - Forensic lab status API
+- Authentication & authorization per tool
+
+### docs/09-FRONTEND-ARCHITECTURE.md
+- Module Federation setup (host + remotes)
+- Remote modules:
+  - DocumentViewerRemote (PDF + OCR bounding box overlay)
+  - GapAnalysisRemote (health score, flags)
+  - DefectMemoRemote (draft generator)
+  - AdminRemote (LLMOps console)
+- State management (shared context)
+- RBAC implementation
+- Accessibility (WCAG 2.1 AA for govt compliance)
+
+### docs/10-AI-SDLC-LLMOPS.md
+- Full AI SDLC lifecycle (5 phases):
+  1. Data Curation & Golden Dataset
+  2. Agent Development & Prompt Engineering
+  3. Evaluation (LLM-as-Judge + deterministic)
+  4. CI/CD & Canary Deployment
+  5. HITL Feedback Loop
+- Prompt versioning strategy
+- Model registry (MLflow)
+- Observability stack
+- Evaluation metrics: Precision, Recall, Hallucination Rate, RAG Relevance
+
+### docs/11-DATA-SCHEMAS.md
+- TypeScript/Pydantic schemas for:
+  - Charge Sheet
+  - FIR
+  - Witness Statement (180 BNSS)
+  - Case Health Score output
+- Include example JSON payloads
+- Validation rules
+
+### docs/12-SECURITY-COMPLIANCE.md
+- DPDP Act 2023 compliance checklist
+- Data residency (India-only)
+- PII masking pipeline
+- Encryption (at rest + in transit)
+- Audit trail requirements
+- RBAC model
+- Penetration testing plan
+- Government cloud (MeghRaj) considerations
+
+### docs/13-EVALUATION-FRAMEWORK.md
+- Golden Dataset creation guidelines
+- Annotation schema (what human experts label)
+- Automated eval pipeline
+- LLM-as-Judge prompts
+- Thresholds for production gate
+- Regression testing strategy
+
+### docs/14-PHASED-ROADMAP.md
+- 6 phases over 12 months (Gantt-style Mermaid)
+- Each phase: Objective, Deliverables, Owners, Dependencies
+- MVP scope (Theft + Simple Assault cases first)
+- Pilot district (Chennai/Coimbatore)
+- State-wide rollout plan
+
+### docs/15-RISKS-MITIGATIONS.md
+- Risk register (table format): Risk, Impact, Probability, Mitigation, Owner
+- Top 10 risks including:
+  - Tamil handwriting OCR accuracy
+  - Code-mixing (Tamil + English + Tanglish)
+  - Judicial skepticism
+  - CCTNS integration delays
+  - DPDP compliance gaps
+  - LLM hallucination in legal context
+
+### docs/16-REFERENCES.md
+- BNSS/BSA/BNS bare act links
+- TN Police Manual
+- CCTNS documentation
+- Relevant Supreme Court & Madras HC judgments
+- Academic papers on Tamil OCR
+- Similar global implementations
+
+### agents/*.md
+For each agent, include:
+- Purpose
+- Input/Output schema
+- Tools used
+- Prompt template (draft)
+- Failure modes
+- Example execution trace
+
+### schemas/*.json.md
+- JSON Schema (Draft 2020-12) with field descriptions
+- Example valid JSON
+- Example invalid JSON with validation errors
+
+### frontend/*.md
+- Component tree
+- API contracts (OpenAPI snippets)
+- User flows (Mermaid sequence diagrams)
+- Accessibility notes
+
+### infra/*.md
+- Terraform/Pulumi module structure
+- Kubernetes manifests outline
+- CI/CD pipeline (GitHub Actions YAML skeleton)
+- Cost estimation
+
+---
+
+# OUTPUT INSTRUCTIONS
+
+1. Output each file as a separate markdown code block with the full file path as the header (e.g., `### 📄 nyayasetu/README.md`).
+2. Use **Mermaid diagrams** wherever architecture, flow, or sequence is described.
+3. Use **tables** for matrices, schemas, and comparisons.
+4. Keep language professional, technical, and actionable.
+5. Reference Indian legal context accurately (BNSS, not CrPC, for new cases).
+6. Reference my existing GitHub agent patterns where applicable.
+7. Do NOT summarize — produce the FULL content of every file.
+8. If output length is a concern, prioritize: README → 05-SYSTEM-ARCHITECTURE → 06-AGENTIC-AI-WORKFLOW → 11-DATA-SCHEMAS → 14-PHASED-ROADMAP, then continue with remaining files.
+
+# BEGIN GENERATION
+
+Start with `nyayasetu/README.md` and proceed through the entire structure.

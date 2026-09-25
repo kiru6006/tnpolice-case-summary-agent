@@ -1,0 +1,26 @@
+
+---
+
+## 📄 `nyayasetu/docs/06-AGENTIC-AI-WORKFLOW.md`
+
+```markdown
+# 06 — Agentic AI Workflow
+
+## LangGraph State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ingest
+    Ingest --> Classify: raw PDF bundle
+    Classify --> Extract: document types identified
+    Extract --> Validate: structured JSON per doc
+    Validate --> Reason: rule + RAG checks done
+    Reason --> DefectMemo: contradictions flagged
+    DefectMemo --> Persist: memo drafted
+    Persist --> [*]
+
+    Classify --> Classify: retry on low confidence
+    Validate --> HumanReview: confidence < 0.7
+    HumanReview --> Validate: corrections applied
+    Reason --> Escalate: critical contradiction
+    Escalate --> HumanReview: judge notified
